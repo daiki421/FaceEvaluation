@@ -1,0 +1,15 @@
+PODS:
+  - Cartography (3.0.1)
+  - UIColor+FlatColors (0.0.2)
+
+DEPENDENCIES:
+  - Cartography
+  - UIColor+FlatColors
+
+SPEC CHECKSUMS:
+  Cartography: f8c899bb0f5cf20758644a8eea59a75e98a03a5d
+  UIColor+FlatColors: 6c699df7a575281794c688c64cee6c44fd1f93b4
+
+PODFILE CHECKSUM: cdaafdb388bc95077a2cfbd6f20b4849a5c43638
+
+COCOAPODS: 1.4.0

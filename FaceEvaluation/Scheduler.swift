@@ -1,0 +1,39 @@
+//
+//  Scheduler.swift
+//  FaceEvaluation
+//
+//  Created by 田宮大暉 on 2018/03/12.
+//  Copyright © 2018年 田宮大暉. All rights reserved.
+//
+
+import UIKit
+
+class Scheduler : NSObject {
+	
+	typealias Action = () -> Void
+	typealias EndCondition = () -> Bool
+	
+	var timer: Timer?
+	var action: Action?
+	var endCondition: EndCondition?
+	
+	func scheduleRepeatedly(_ action: @escaping Action, interval: TimeInterval, endCondition: @escaping EndCondition)  {
+		guard timer == nil && interval > 0 else { return }
+		self.action = action
+		self.endCondition = endCondition
+		timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(Scheduler.doAction(_:)), userInfo: nil, repeats: true)
+	}
+	
+	@objc func doAction(_ timer: Timer) {
+		guard let action = action, let endCondition = endCondition, !endCondition() else {
+			timer.invalidate()
+			self.timer = nil
+			self.action = nil
+			self.endCondition = nil
+			return
+		}
+		action()
+	}
+	
+}
+
